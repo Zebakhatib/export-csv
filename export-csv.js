@@ -2,6 +2,7 @@
  * A Highcharts plugin for exporting data from a rendered chart as CSV, XLS or HTML table
  *
  * Author:   Torstein Honsi
+ * Modified by: Zeba khatib
  * Licence:  MIT
  * Version:  1.4.8
  */
@@ -24,8 +25,7 @@
     Highcharts.setOptions({
         lang: {
             downloadCSV: 'Download CSV',
-            downloadXLS: 'Download XLS',
-            viewData: 'View data table'
+            downloadXLS: 'Download XLS'
         }
     });
 
@@ -166,6 +166,9 @@
                             xAxis.categories[row.x],
                             row.x
                         )
+                         if (options.categoryAsDate) {
+                            category = Highcharts.dateFormat(dateFormat, category);
+                        }
                     } else {
                         category = row.x;
                     }
@@ -371,9 +374,6 @@
         }, {
             textKey: 'downloadXLS',
             onclick: function () { this.downloadXLS(); }
-        }, {
-            textKey: 'viewData',
-            onclick: function () { this.viewData(); }
         });
     }
 
