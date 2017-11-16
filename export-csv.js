@@ -204,6 +204,7 @@
                     val = '"' + val + '"';
                 }
                 if (typeof val === 'number') {
+                    val = val.toFixed(options.decimalPoints || 0);
                     if (n === ',') {
                         val = val.toString().replace(".", ",");
                     }
